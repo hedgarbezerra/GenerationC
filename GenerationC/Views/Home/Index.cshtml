@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Generation C</h1>
+    <p class="lead"> During the development of this web application I've use many tools and I'll be tell what and how I used them as brief as possible. </p>
+    <p>As the core for this project was used C# with the ASPNET MVC5 which manages all the resources, that being the database which is SQL Server 2017 and our front end
+    with basic client side languages and also Bootstrap.</p>
+    <p>The Entity Framework which is part of MVC5 handled all the connect and data modeling on our database, after modeling our classes was necessary
+    to define all the configurations such as tables and columns names, relationships and everything else I used the Visual Studio scaffolding to generate
+    the classes controllers and views, so I could optmize my productivity.</p>
+    <p>After that I had to implement a login system, I tried using Identity which is a part of Entity Framework for user management but It didn't work out so well
+    so I decided to implement cookies and they have worked fine so far.</p>
+    <p>Using cookie I can store any kind of information in the user's navigator as long it's a string, therefore I had to apply some logic here and there
+    but in the end, everything worked just fine.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Spoiler Alert!</h2>
+        <p>
+            I'm Hedgar, currently studying System Analysis and Development and really passionate about most technologies!
+        </p>
+        <p>
+            I'm a really curious person but that was not always good. Whenever I liked some language or technology I'd drop whatever
+            I was doing and focus on that. But I finally figured that should stop, and so I focused on one language: Python
+        </p>
+        <p><a class="btn btn-outline-primary" href="@Url.Action("About", "Home")">Tell me more &raquo;</a></p>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Favorite webpage</h2>
+        <p> This is a easy one.<strong> Stackoverflow</strong></p>
+        <p> I mean, isn't it every developers best friend? This is where you find those Indian guys that taught you to program. </p>
+        <p>
+            This place is filled with information on How-To, sometimes it gets messy, can't deny but it's really help and insightful web page.
+            If you don't know it yet, just go and check.
+        </p>
+        <p><a class="btn btn-outline-primary" href="https://stackoverflow.com/" target="_blank">I'm gonna check it &raquo;</a></p>
+        
+    </div>
+        
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Previous projects</h2>
+        <p>
+            As I'm a really curious person I've done a ton of research on multiple languages and learned a lot of things(There's still so much to go!).
+            I have also applied most of the knowledge on some projects of my own using multiples programming languages and technologies.
+        </p>
+        <p>
+            One of my latest project was a web page developed using Reactjs and Redux which consumes Poke Api, I've done a pretty nice layout even though
+            the app is really slow due to the API pagination.
+        </p>
+        <p>
+            After this one was a project using Ruby on Rails, a rapid development framework. And in this project I developed a "Timetracker" for a
+            company to keep track of where and when it's employees are at a time, it was a pretty nice experience and I hope to work with Ruby again.
+        </p>
+        <p>
+            And my current project is an React Native app and a Python Flask Rest Api. I've already deployed my API using Heroku and It's working fine(And so it seems)
+            and I'm still working on the app itself but since it's purely Javascript and basic React tags, I don't think it's going to take long.
+        </p>
+        <p>If you wish to see some more, click the link below!</p>
+        <p><a class="btn btn-outline-primary" href="https://github.com/hedgarbezerra" target="_blank">I'm curious &raquo;</a></p>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Insight sources</h2>
+        <p>
+            As said in my favorite webpage topic, Stackoverflow is a pretty decente font of insights, but only when we are talking about specific
+            or technical topics, and that's really cool, but when it comes to real life LinkedIn is the best place for insights, mostly about our careers.
+        </p>
+        <p>LinkedIn is a platform which connects people on the IT sector mostly. There are also many job oportunities but the most relevant feature are the 
+        people there. People are constantly sharing their profissional experience and their mindset, and that oftenly gives me some insights on how to 
+        handle professional life the best way possible, if you're curious you should see some more.</p>
+        
+        <p><a class="btn btn-outline-primary" href="https://www.linkedin.com/" target="_blank">Give me insights &raquo;</a></p>
+    </div>
+</div>
+
+   

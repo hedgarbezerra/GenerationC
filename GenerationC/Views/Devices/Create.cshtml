@@ -1,0 +1,63 @@
+﻿@model GenerationC.Database.models.Device
+
+@{
+    ViewBag.Title = "New device";
+}
+
+<div class="container">
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+    <div class="form-row justify-content-center">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group col-md-3 text-center">
+            @Html.LabelFor(model => model.Name)
+
+            <div class="input-group mx-auto mb-3">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "A cool name for the device"} })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="form-group col-md-3 text-center">
+            @Html.LabelFor(model => model.Type)
+
+            <div class="input-group mx-auto mb-3">
+                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "What type of device is it?" } })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                <div class="input-group-append">
+                    <span class="input-group-text"> Smart TV?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-md-3 text-center">
+            @Html.LabelFor(model => model.Gateway)
+
+            <div class="input-group mx-auto mb-3">
+                @Html.EditorFor(model => model.Gateway, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "We promise not to hack you" } })
+                @Html.ValidationMessageFor(model => model.Gateway, "", new { @class = "text-danger" })
+
+                <div class="input-group-append">
+                    <span class="input-group-text"> 192.168.0.15</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row justify-content-center">
+        <div class="form-group col-md-3 text-center">
+            <input type="submit" value="Done" class="btn btn-outline-primary" />
+        </div>
+    </div>
+ }
+</div>
+  @section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+  }

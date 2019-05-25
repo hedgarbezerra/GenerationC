@@ -1,0 +1,182 @@
+﻿body {
+    height: 100%;
+    background-color: #dbe9f9;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding: 20px;
+    padding-bottom: 0px;
+
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 350px;
+}
+img {
+    max-height: 280px;
+    max-width: 400px;
+}
+.img {
+    float: right;
+    border-radius:50%;
+}
+.jumbotron {
+    background-color: rgba(193, 212, 231, 1)
+}
+footer {
+    height:40px;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration:none;
+}
+i {
+    color: #007bff;
+    padding: 10px;
+}
+
+#hovering {
+    position: relative;
+    padding: 15px;
+    margin: 20px;
+}
+    #hovering img {
+        position: absolute;
+        left: 0;
+        -webkit-transition: opacity 1.4s ease-in-out;
+        -moz-transition: opacity 1.4s ease-in-out;
+        -o-transition: opacity 1.4s ease-in-out;
+        transition: opacity 1.4s ease-in-out;
+    }
+
+        #hovering img .top:hover {
+            opacity:0;
+        }
+
+section.special, article.special {
+    text-align: center;
+}
+
+section .inner, article .inner {
+    padding: 2.5em 0 1.5em 0;
+    padding-left: 3.5em;
+    padding-right: 3.5em;
+}
+
+@media screen and (max-width: 980px) {
+
+    section .inner, article .inner {
+        padding: 2em 0 0.1em 0;
+        padding-right: 2em;
+        padding-left: 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    section .inner, article .inner {
+        padding: 1em 0 0.1em 0;
+        padding-right: 1em;
+        padding-left: 1em;
+    }
+}
+
+section .columns, article .columns {
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+}
+
+    section .columns.double .column, article .columns.double .column {
+        width: 50%;
+    }
+
+@media screen and (max-width: 980px) {
+
+    section .columns.double .column, article .columns.double .column {
+        width: 100%;
+    }
+}
+
+#contato {
+    display: -ms-flexbox;
+    -ms-flex-pack: justify;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+}
+
+    #contato form {
+        margin: 0;
+    }
+
+    #contato .column {
+        padding: 2.5em 0 1.5em 0;
+        padding-left: 3.5em;
+        padding-right: 3.5em;
+        width: 50%;
+    }
+
+        #contato .column.social {
+            font-family: inherit;
+        }
+
+
+@media screen and (max-width: 980px) {
+
+    #contato .column {
+        padding: 2em 0 0.1em 0;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
+
+@media screen and (max-width: 736px) {
+
+    #contato .column {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    #contato .column {
+        padding: 1em 0 0.1em 0;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
+

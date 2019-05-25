@@ -1,0 +1,61 @@
+﻿@model IEnumerable<GenerationC.Database.models.Device>
+
+@{
+    ViewBag.Title = "My devices";
+}
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<table class="table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gateway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_at)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gateway)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created_at)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "Devices", new { id = item.Id })"> Details <i class="fas fa-info-circle"></i></a>
+            <a href="@Url.Action("Edit", "Devices", new { id = item.Id })"> Update <i class="far fa-edit"></i></a>
+            <a href="@Url.Action("Delete", "Devices", new { id = item.Id })"> Delete <i class="far fa-trash-alt"></i></a>
+            @*Html.ActionLink("Edit", "Edit", new { id = item.Id }) *@
+           
+        </td>
+    </tr>
+}
+
+</table>
