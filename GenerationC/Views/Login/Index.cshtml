@@ -27,14 +27,14 @@
             @Html.LabelFor(model => model.Password)
             <div class="input-group mx-auto mb-3">
 
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center", placeholder = "We'll keep it secret"})
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center", placeholder = "We'll keep it secret" })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
+                @Html.ValidationMessage("Authentication error", new { @class = "text-danger" })
             </div>
         </div>
     </div>
 
-    @Html.ValidationMessage("Authentication error", new { @class = "text-danger" })
+   
 
     <div class="form-row justify-content-center">
         <div class="form-group col-md-3 text-center">

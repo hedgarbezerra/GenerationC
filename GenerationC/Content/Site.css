@@ -35,7 +35,7 @@ img {
     background-color: rgba(193, 212, 231, 1)
 }
 footer {
-    height:40px;
+    height:30px;
     bottom: 0;
     display: flex;
     justify-content: center;

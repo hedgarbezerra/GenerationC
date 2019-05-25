@@ -28,9 +28,6 @@
                 <div class="input-group mx-auto mb-3">
 
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "And contact you?" } })
-                    <div class="input-group-append">
-                        <span class="input-group-text"> user@email.com</span>
-                    </div>
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -55,10 +52,10 @@
                 @Html.LabelFor(model => model.Password)
                 <div class="input-group mx-auto mb-3">
 
-                    @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center", placeholder = "It's secret we swear!"})
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center", placeholder = "It's secret we swear!" })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
                 </div>
+                @Html.ValidationMessage("IdentityError", new { @class = "text-danger" })
             </div>
         </div>
 

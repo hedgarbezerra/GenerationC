@@ -39,7 +39,7 @@ namespace GenerationC.Database.models
             MinLength(8, ErrorMessage = "Your password is too short, try fewer characters(8)!")]
         [Required(ErrorMessage = "Password can not be empty, please insert a password")]
         [DataType(DataType.Password)]
-        public virtual string NPassword { get; set; }
+        
 
         private DateTime _setDate = DateTime.Now;
 

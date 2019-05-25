@@ -1,30 +1,33 @@
 ﻿@model GenerationC.Database.models.Device
 
 @{
-    ViewBag.Title = "Details on "+Model.Name;
+    ViewBag.Title = "Details on " + Model.Name;
 }
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Device #@Model.Id</h5>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Device #@Model.Id</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-4 form-group">
+                    <h4>Name:</h4>
+                    <span>@Model.Name</span>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-4 form-group">
-                            <h4>Name:</h4>
-                            <span>@Model.Name</span>
-                        </div>
-                        <div class="col-lg-4 form-group">
-                            <h4>Type:</h4>
-                            <span>@Model.Type</span>
-                        </div>
-                        
-                        <div class="col-lg-12 form-group">
-                            <h4>Gateway:</h4>
-                            <span>@Model.Gateway</span>
-                        </div>
-                    </div>
+                <div class="col-lg-4 form-group">
+                    <h4>Type:</h4>
+                    <span>@Model.Type</span>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal">Close</button>
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+
+                <div class="col-lg-12 form-group">
+                    <h4>Gateway:</h4>
+                    <span>@Model.Gateway</span>
                 </div>
- 
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm pull-left" data-dismiss="modal">Close</button>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        </div>
+    </div>
+</div>

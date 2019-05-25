@@ -58,6 +58,19 @@ namespace GenerationC.Controllers
             
             if (ModelState.IsValid)
             {
+
+                if (UsernameExists(user))
+                {
+                    ModelState.AddModelError("IdentityError", "Username already existis");
+                    return View(user);
+                }
+
+                if (EmailExists(user))
+                {
+                    ModelState.AddModelError("IdentityError", "Email already existis");
+                    return View(user);
+                }
+
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Login"); 
@@ -118,6 +131,15 @@ namespace GenerationC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        protected bool UsernameExists(User user)
+        {
+            return db.Users.Any(u => u.Username == user.Username);
+        }
+
+        protected bool EmailExists(User user)
+        {
+            return db.Users.Any(u => u.Email == user.Email);
         }
     }
 }

@@ -1,53 +1,22 @@
 ﻿@model GenerationC.Database.models.User
 
 @{
+    var dt = Model.Created_at.ToString("dd/MM/yyyy");
     ViewBag.Title = Model.Name;
 }
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="container">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Created_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Created_at)
-        </dd>
-
-    </dl>
+    <div class="form-row justify-content-center">
+        <div class="form-group col-md-6 text-center">
+            <h4>Hey there, @Model.Name</h4>
+            <h5> Here I have some details on your profile, let's see...</h5>
+            <p>Okay, let's go. Your name is @Model.Name and you've joined us on @dt and we really appreciate that.</p>
+            <p>We are glad we could help you register and manipulate your devices from our platform, here's some more</p>
+            <p>Your current username is @Model.Username and your email... @Model.Email </p>
+            <p>Oh and your password...haha just kidding, I can keep a secret! ;)</p>
+        </div>
+        <p> Maybe you want to change something, let me show you the way! @Html.ActionLink("Edit", "Users", new {Id = Model.Id})</p>
+    </div>
 </div>
 

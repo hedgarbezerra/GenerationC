@@ -30,9 +30,7 @@
             <div class="input-group mx-auto mb-3">
                 @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "What type of device is it?" } })
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-                <div class="input-group-append">
-                    <span class="input-group-text"> Smart TV?</span>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -44,9 +42,6 @@
                 @Html.EditorFor(model => model.Gateway, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "We promise not to hack you" } })
                 @Html.ValidationMessageFor(model => model.Gateway, "", new { @class = "text-danger" })
 
-                <div class="input-group-append">
-                    <span class="input-group-text"> 192.168.0.15</span>
-                </div>
             </div>
         </div>
     </div>

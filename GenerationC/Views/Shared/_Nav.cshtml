@@ -28,9 +28,9 @@
                         Devices
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="@Url.Action("New Device", "Devices")" class="dropdown-item"> New Device </a>
+                        <a href="@Url.Action("Create", "Devices")" class="dropdown-item"> New Device </a>
                         <div class="dropdown-divider"></div>
-                        <a href="@Url.Action("Devices List", "Devices")" class="dropdown-item"> My Devices </a>
+                        <a href="@Url.Action("Index", "Devices")" class="dropdown-item"> My Devices </a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -40,10 +40,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <span class="nav-link"> @Request.Cookies["Name"].Value.ToString()</span> Welcome
+                    <i class="nav-link"> Welcome back, @Request.Cookies["Name"].Value.ToString()</i>
                 </li>
                 <li class="nav-item">
-                    <a href="@Url.Action("Details", "User", new {Id = Id })" class="nav-link"> Settings <i class="far fa-user"></i></a>
+                    <a href="@Url.Action("Details", "Users", new {Id = Id })" class="nav-link"> Settings <i class="far fa-user"></i></a>
                 </li>
                 <li class="nav-item">
                     <a href="@Url.Action("Logout", "Login")" class="nav-link"> Logout <i class="fas fa-sign-out-alt"></i></a>

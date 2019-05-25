@@ -27,7 +27,7 @@ namespace GenerationC.Controllers
         }
 
         // GET: Devices/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult _Details(int? id)
         {
             int UserId = Current_user();
 
@@ -95,7 +95,7 @@ namespace GenerationC.Controllers
         }
 
         // GET: Devices/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             int UserId = Current_user();
 
@@ -147,7 +147,7 @@ namespace GenerationC.Controllers
         }
 
         // GET: Devices/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (!SessionAuth())
             {

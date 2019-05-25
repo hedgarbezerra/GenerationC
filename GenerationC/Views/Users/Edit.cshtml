@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = Model.Name;
 }
+<div class="container">
 
-@using (Html.BeginForm(new { @class = "container" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -71,7 +72,9 @@
     </div>
 
 }
-}
+
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -4,6 +4,8 @@
     ViewBag.Title = "Editing device #" + Model.Id;
 }
 
+<div class="container">
+
 @using (Html.BeginForm(new { @class = "container" }))
 {
     @Html.AntiForgeryToken()
@@ -53,6 +55,7 @@
     </div>
 
 }
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
