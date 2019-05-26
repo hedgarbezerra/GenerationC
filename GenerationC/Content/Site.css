@@ -9,7 +9,9 @@
     padding-bottom: 0px;
 
 }
-
+a {
+    text-decoration: none !important
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -23,11 +25,12 @@ select,
 textarea {
     max-width: 350px;
 }
-img {
-    max-height: 280px;
-    max-width: 400px;
+.w-100 {
+    max-height: 720px;
+    max-width: 1280px;
 }
 .img {
+    height: 280px !important;
     float: right;
     border-radius:50%;
 }
@@ -41,9 +44,10 @@ footer {
     justify-content: center;
     align-items: center;
 }
-a{
-    text-decoration:none;
+.carousel-caption {
+   color:black;
 }
+
 i {
     color: #007bff;
     padding: 10px;

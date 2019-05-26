@@ -1,59 +1,70 @@
 ﻿@model IEnumerable<GenerationC.Database.models.Device>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "My devices";
 }
 
-<div class="container">
+    <div class="container">
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-    </div>   
+        </div>
 
-    <table class="table table-responsive-md table-hover">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Device Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Gateway</th>
-                <th scope="col">Created at</th>
-                <th scope="col">Options</th>
-            </tr>
-        </thead>
-
-        @foreach (var item in Model)
+        @using (Html.BeginForm("Index", "Devices", FormMethod.Get))
         {
-         <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gateway)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created_at)
-                </td>
-                <td>
-                    <a href="@Url.Action("Details", "Devices", new { id = item.Id })" id="opModal"> Details <i class="fas fa-info-circle"></i></a>
-                    <a href="@Url.Action("Edit", "Devices", new { id = item.Id })" id="opModal"> Update <i class="far fa-edit"></i></a>
-                    <a href="@Url.Action("Delete", "Devices", new { id = item.Id })" id="opModal"> Delete <i class="far fa-trash-alt"></i></a>
-                    @*Html.ActionLink("Edit", "Edit", new { id = item.Id }) *@
+            <div class="form-inline text-right">
+                    <p>
+                        Find by name or type: 
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new{ @class = "form-control text-center"})
+                        <input type="submit" value="Search" class="btn btn-outline-primary" />
+                    </p>
+            </div>
+        }
 
-                </td>
-            </tr>
-        </tbody>
-}
+        <table class="table table-responsive-md table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Device Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Gateway</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Options</th>
+                </tr>
+            </thead>
 
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gateway)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Created_at)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Details", "Devices", new { id = item.Id })" id="opModal"> Details <i class="fas fa-info-circle"></i></a>
+                            <a href="@Url.Action("Edit", "Devices", new { id = item.Id })" id="opModal"> Update <i class="far fa-edit"></i></a>
+                            <a href="@Url.Action("Delete", "Devices", new { id = item.Id })" id="opModal"> Delete <i class="far fa-trash-alt"></i></a>
+                            @*Html.ActionLink("Edit", "Edit", new { id = item.Id }) *@
+
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
 
 
 <script>

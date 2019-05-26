@@ -8,15 +8,15 @@
 <div class="container">
 
     <div class="form-row justify-content-center">
-        <div class="form-group col-md-6 text-center">
+        <div class="form-group col-md-12 text-center">
             <h4>Hey there, @Model.Name</h4>
             <h5> Here I have some details on your profile, let's see...</h5>
             <p>Okay, let's go. Your name is @Model.Name and you've joined us on @dt and we really appreciate that.</p>
             <p>We are glad we could help you register and manipulate your devices from our platform, here's some more</p>
             <p>Your current username is @Model.Username and your email... @Model.Email </p>
             <p>Oh and your password...haha just kidding, I can keep a secret! ;)</p>
+            <p> Maybe you want to change something, let me show you the way!<a href="@Url.Action("Edit", "Users", new { id = Model.Id })"> Let's change</a></p>
         </div>
-        <p> Maybe you want to change something, let me show you the way! @Html.ActionLink("Edit", "Users", new {Id = Model.Id})</p>
     </div>
 </div>
 

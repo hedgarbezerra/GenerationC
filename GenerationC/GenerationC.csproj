@@ -54,6 +54,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -140,10 +146,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\1.PNG" />
-    <Content Include="Assets\2.PNG" />
+    <Content Include="Assets\manhua.png" />
+    <Content Include="Assets\manhua2.png" />
     <Content Include="Assets\Hed.png" />
-    <Content Include="Assets\Me.png" />
+    <Content Include="Assets\mywork.png" />
+    <Content Include="Assets\mywork2.png" />
+    <Content Include="Assets\mywork3.png" />
+    <Content Include="Assets\pokedex.png" />
+    <Content Include="Assets\pokedex1.png" />
     <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -153,6 +163,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -203,9 +214,9 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Devices\Create.cshtml" />
     <Content Include="Views\Devices\Index.cshtml" />
-    <Content Include="Views\Devices\_Delete.cshtml" />
-    <Content Include="Views\Devices\_Details.cshtml" />
-    <Content Include="Views\Devices\_Edit.cshtml" />
+    <Content Include="Views\Devices\Delete.cshtml" />
+    <Content Include="Views\Devices\Details.cshtml" />
+    <Content Include="Views\Devices\Edit.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

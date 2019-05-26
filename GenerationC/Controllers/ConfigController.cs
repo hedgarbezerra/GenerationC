@@ -39,7 +39,7 @@ namespace GenerationC.Controllers
             {
                 var expiredCookie = new HttpCookie(domainCookie)
                 {
-                    Expires = DateTime.Now.AddDays(-5),
+                    Expires = DateTime.Now.AddDays(-7),
                 };
                 HttpContext.Response.Cookies.Add(expiredCookie);
             }

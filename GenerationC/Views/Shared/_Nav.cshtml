@@ -40,7 +40,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <i class="nav-link"> Welcome back, @Request.Cookies["Name"].Value.ToString()</i>
+                    <p class="nav-link"> Welcome back, @Request.Cookies["Name"].Value.ToString()</p>
                 </li>
                 <li class="nav-item">
                     <a href="@Url.Action("Details", "Users", new {Id = Id })" class="nav-link"> Settings <i class="far fa-user"></i></a>

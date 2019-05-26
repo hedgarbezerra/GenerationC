@@ -14,20 +14,31 @@ namespace GenerationC.Controllers
     {
         
         // GET: Devices
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             if (!SessionAuth())
             {
                 return RedirectToAction("Index", "Login");
-            }  
-
+            }
             int UserId = Current_user();
-            var devices = db.Devices.Where(d => d.User.Id == UserId );
-            return View(devices.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                var devices = db.Devices.Where(d => d.User.Id == UserId && d.Name.Contains(searchString) ||  d.User.Id == UserId && d.Type.Contains(searchString));
+                return View(devices.ToList());
+            }
+
+            else
+            {
+                var devices = db.Devices.Where(d => d.User.Id == UserId);
+                return View(devices.ToList());
+            }
+            
+
         }
 
         // GET: Devices/Details/5
-        public ActionResult _Details(int? id)
+        public ActionResult Details(int? id)
         {
             int UserId = Current_user();
 
@@ -95,7 +106,7 @@ namespace GenerationC.Controllers
         }
 
         // GET: Devices/Edit/5
-        public ActionResult _Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             int UserId = Current_user();
 
@@ -147,7 +158,7 @@ namespace GenerationC.Controllers
         }
 
         // GET: Devices/Delete/5
-        public ActionResult _Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (!SessionAuth())
             {
