@@ -2,29 +2,34 @@
 
 @{
     var dt = Model.Created_at.ToString("dd/MMMM/yyyy");
-    ViewBag.Title = "Deleting device "+@Model.Name;
+    ViewBag.Title = "Deleting device " + @Model.Name;
 }
-<div class="container">
-
-    <div class="form-row justify-content-center">
-        <div class="form-group col-md-3 text-center">
-            <h3>Are you sure you want to delete this nice divece of yours?</h3>
-            <p>Just to make sure it's the right one, let's check some details: </p>
-            <p>Your device name is @Model.Name and one of it's type, which is @Model.Type and you used to connect to it through the @Model.Gateway IP Address.</p>
-            <p>Is this the right one?</p>
-            <p>Let's think this through, you have this device registred since @dt and that's a long time(<strong>I think!</strong> )</p>
-            <p>If you still want to delete, just click the button bellow.</p>
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Device #@Model.Id</h5>
         </div>
-    </div>
-
-    @using (Html.BeginForm())
-    {
-
-        @Html.AntiForgeryToken()
-        <div class="form-row justify-content-center">
-            <div class="form-group col-md-3 text-center">
-                <input type="submit" value="Delete" class="btn btn-outline-primary" />
+        <div class="modal-body">
+            <div class="form-row justify-content-around">
+                <div class="form-group col-md-8 text-center">
+                    <h3>Are you sure you want to delete this nice device of yours?</h3>
+                    <p>Just to make sure it's the right one, let's check some details: </p>
+                    <p>Your device name is @Model.Name and one of it's type, which is @Model.Type and you used to connect to it through the @Model.Gateway IP Address.</p>
+                    <p>Is this the right one?</p>
+                    <p>Let's think this through, you have this device registred since @dt and that's a long time(<strong>I think!</strong> )</p>
+                    <p>If you still want to delete, just click the button bellow.</p>
+                </div>
             </div>
         </div>
-    }
+        <div class="modal-footer justify-content-center">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <input type="submit" value="Delete" class="btn btn-outline-primary" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            }
+        </div>
+    </div>
 </div>
+

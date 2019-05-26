@@ -58,11 +58,18 @@ namespace GenerationC.Controllers
             {
                 return HttpNotFound();
             }
+
             if (device.User_Id != UserId)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
-            return View(device);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(device);
+            }
+
+            return PartialView(device);
         }
 
         // GET: Devices/Create
@@ -133,7 +140,12 @@ namespace GenerationC.Controllers
             }
 
             ViewBag.User_Id = new SelectList(db.Users, "Id", "Name", device.User_Id);
-            return View(device);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(device);
+            }
+
+            return PartialView(device);
         }
 
         // POST: Devices/Edit/5
@@ -164,16 +176,25 @@ namespace GenerationC.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Device device = db.Devices.Find(id);
+
             if (device == null)
             {
                 return HttpNotFound();
             }
-            return View(device);
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(device);
+            }
+
+            return PartialView(device);
         }
 
         // POST: Devices/Delete/5

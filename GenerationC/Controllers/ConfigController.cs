@@ -21,19 +21,19 @@ namespace GenerationC.Controllers
         }
 
 
-        private void WriteCookie(string nomeCookie, string valor)
+        private void WriteCookie(string CookieName, string value)
         {
-            HttpCookie cookie = new HttpCookie(nomeCookie)
+            HttpCookie cookie = new HttpCookie(CookieName)
             {
-                Value = valor
+                Value = value
             };
-            TimeSpan tempo = new TimeSpan(1, 0, 0, 0);
-            cookie.Expires = DateTime.Now + tempo;
+            TimeSpan exp = new TimeSpan(0, 12, 0, 0);
+            cookie.Expires = DateTime.Now + exp;
             Response.Cookies.Add(cookie);
         }
 
         protected void RemoveCookies()
-        {
+        {   
             string[] allDomainCookes = HttpContext.Request.Cookies.AllKeys;
             foreach (string domainCookie in allDomainCookes)
             {
@@ -43,6 +43,7 @@ namespace GenerationC.Controllers
                 };
                 HttpContext.Response.Cookies.Add(expiredCookie);
             }
+            HttpContext.Session.Abandon();
             HttpContext.Request.Cookies.Clear();
         }
 
@@ -51,7 +52,7 @@ namespace GenerationC.Controllers
             string[] allDomainCookes = HttpContext.Request.Cookies.AllKeys;
             foreach (string domainCookie in allDomainCookes)
             {
-                if (domainCookie.Contains(".ASPXAUTH"))
+                if (domainCookie.Contains("Id"))
                 {
                     return true;
                 }
@@ -71,7 +72,7 @@ namespace GenerationC.Controllers
 
         protected void SessionCookies(User user)
         {
-            FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
+            FormsAuthentication.SetAuthCookie(user.Id.ToString(), true);
             WriteCookie("Id", user.Id.ToString());
             WriteCookie("Username", user.Username.ToString());
             WriteCookie("Name", user.Name.ToString());

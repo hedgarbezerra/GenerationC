@@ -10,77 +10,96 @@
         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         </div>
-
-        @using (Html.BeginForm("Index", "Devices", FormMethod.Get))
-        {
-            <div class="form-inline text-right">
-                    <p>
-                        Find by name or type: 
-                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new{ @class = "form-control text-center"})
-                        <input type="submit" value="Search" class="btn btn-outline-primary" />
-                    </p>
-            </div>
-        }
-
-        <table class="table table-responsive-md table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Device Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Gateway</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col">Options</th>
-                </tr>
-            </thead>
-
-            @foreach (var item in Model)
+        <div class="form-inline float-lg-right">
+            @using (Html.BeginForm("Index", "Devices", FormMethod.Get))
             {
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gateway)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Created_at)
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Details", "Devices", new { id = item.Id })" id="opModal"> Details <i class="fas fa-info-circle"></i></a>
-                            <a href="@Url.Action("Edit", "Devices", new { id = item.Id })" id="opModal"> Update <i class="far fa-edit"></i></a>
-                            <a href="@Url.Action("Delete", "Devices", new { id = item.Id })" id="opModal"> Delete <i class="far fa-trash-alt"></i></a>
-                            @*Html.ActionLink("Edit", "Edit", new { id = item.Id }) *@
 
-                        </td>
-                    </tr>
-                </tbody>
+                <p>
+                    <strong>Find by name or type: </strong>
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control text-center" })
+                    <input type="submit" value="Search" class="btn btn-outline-primary" />
+                </p>
+
             }
-        </table>
-    </div>
+        </div>
+            <table class="table table-responsive-md table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Device Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Gateway</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gateway)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created_at)
+                            </td>
+                            <td>
+                                <span>Details <button id="@item.Id" data-id="@item.Id" class="details"><i class="fas fa-info"></i></button></span>
+                                <span>Update <button id="@item.Id" data-id="@item.Id" class="edit"><i class="far fa-edit"></i></button></span>
+                                <span>Delete <button id="@item.Id" data-id="@item.Id" class="delete"><i class="fas fa-trash-alt"></i></button></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+
+        </div>
 
 
-<script>
-    $(document).ready(function () {
+@section scripts {
+    <script>
 
-        $("#opModal").click(function () {
-
-            var url = $("modal").data("url");
-
-            $.get(url, function (data) {
-
-                $("modal").html(data);
-                $("modal").modal("show");
-
+    $(function () {
+        $(".details").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modal").load("Devices/Details/" + id, function () {
+                $("#modal").modal();
             })
         })
-    })
+    });
 
-</script>
+     $(function () {
+        $(".edit").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modal").load("Devices/Edit/" + id, function () {
+                $("#modal").modal();
+            })
+        })
+     });
+     $(function () {
+        $(".delete").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modal").load("Devices/Delete/" + id, function () {
+                $("#modal").modal();
+            })
+        })
+    });
+
+     
+
+        $("modal").on("hidden.bs.modal", function (e) {
+            $(".modal-content").html("");
+            })
+    </script>
+    
+    }
