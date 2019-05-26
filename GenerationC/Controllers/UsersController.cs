@@ -83,6 +83,7 @@ namespace GenerationC.Controllers
         public ActionResult Edit(int? id)
         {
             int UserId = Current_user();
+
             if (!SessionAuth())
             {
                 return RedirectToAction("Index", "Login");
@@ -117,6 +118,18 @@ namespace GenerationC.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (UsernameExists(user))
+                {
+                    ModelState.AddModelError("IdentityError", "Username already existis");
+                    return View(user);
+                }
+
+                if (EmailExists(user))
+                {
+                    ModelState.AddModelError("IdentityError", "Email already existis");
+                    return View(user);
+                }
+
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -9,7 +9,7 @@ namespace GenerationC.Entity.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(GenerationC.Database.GenerationCDbContextC context)
