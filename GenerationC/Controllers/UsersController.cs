@@ -61,15 +61,22 @@ namespace GenerationC.Controllers
 
                 if (UsernameExists(user))
                 {
-                    ModelState.AddModelError("IdentityError", "Username already existis");
+                    ModelState.AddModelError("IdentityError", "Username already exists");
                     return View(user);
                 }
 
                 if (EmailExists(user))
                 {
-                    ModelState.AddModelError("IdentityError", "Email already existis");
+                    ModelState.AddModelError("IdentityError", "Email already exists");
                     return View(user);
                 }
+
+                if(user.Password.ToUpper().Contains(user.Username.ToUpper()) || user.Password.ToUpper().Contains(user.Name.ToUpper()))
+                {
+                    ModelState.AddModelError("IdentityError", "You password can't be similar to your username or name!");
+                    return View(user);
+                }
+
                 user.Password = ComputeHash(user.Password, null);
 
                 db.Users.Add(user);

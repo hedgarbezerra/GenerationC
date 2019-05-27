@@ -15,7 +15,7 @@
                 @Html.LabelFor(model => model.Name)
                 <div class="input-group mx-auto mb-3">
 
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "What should we call you?"} })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center text-capitalize", placeholder = "What should we call you?"} })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
