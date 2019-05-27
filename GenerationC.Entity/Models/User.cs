@@ -24,13 +24,14 @@ namespace GenerationC.Database.models
         public string Email { get; set; }
 
 
-        [MaxLength(15, ErrorMessage = "Your username is too big, try fewer characters(15)!")]
+        [MaxLength(15, ErrorMessage = "Your username is too big, try fewer characters(15)!"), 
+            MinLength(6, ErrorMessage = "Your username is too short, try more characters(6)!")]
         [Required(ErrorMessage = "Username can not be empty, please insert a username")]
         public string Username { get; set; }
 
 
         [MaxLength(150, ErrorMessage = "Your password is too big, try fewer characters(150)!"),
-            MinLength(8, ErrorMessage = "Your password is too short, try fewer characters(8)!")]
+            MinLength(8, ErrorMessage = "Your password is too short, try more characters(8)!")]
         [Required(ErrorMessage = "Password can not be empty, please insert a password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

@@ -70,6 +70,7 @@ namespace GenerationC.Controllers
                     ModelState.AddModelError("IdentityError", "Email already existis");
                     return View(user);
                 }
+                user.Password = ComputeHash(user.Password, null);
 
                 db.Users.Add(user);
                 db.SaveChanges();

@@ -67,10 +67,6 @@ namespace GenerationC.Controllers
             return Convert.ToInt32(Request.Cookies["Id"].Value.ToString());
         }
 
-        protected bool UserAuth(Login user)
-        {
-            return db.Users.Any(u => u.Username == user.Username && u.Password == user.Password);
-        }
 
         protected void SessionCookies(User user)
         {
@@ -81,8 +77,7 @@ namespace GenerationC.Controllers
 
         }
 
-
-        public static string ComputeHash(string password,
+        protected static string ComputeHash(string plainText,
                                      byte[] saltBytes)
         {
             if (saltBytes == null)
@@ -100,7 +95,7 @@ namespace GenerationC.Controllers
                 rng.GetNonZeroBytes(saltBytes);
             }
 
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(password);
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
             byte[] plainTextWithSaltBytes =
                     new byte[plainTextBytes.Length + saltBytes.Length];
@@ -113,6 +108,7 @@ namespace GenerationC.Controllers
 
             HashAlgorithm hash = new SHA256Managed();
 
+
             byte[] hashBytes = hash.ComputeHash(plainTextWithSaltBytes);
 
             byte[] hashWithSaltBytes = new byte[hashBytes.Length +
@@ -124,18 +120,21 @@ namespace GenerationC.Controllers
             for (int i = 0; i < saltBytes.Length; i++)
                 hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
 
-            string dbpassword = Convert.ToBase64String(hashWithSaltBytes);
+            string hashValue = Convert.ToBase64String(hashWithSaltBytes);
 
-            return dbpassword;
+            return hashValue;
         }
 
-        public static bool VerifyPass(string password,
-                                      string dbpassword)
+
+        protected static bool VerifyHash(string plainText,
+                                      string hashValue)
         {
-            byte[] hashWithSaltBytes = Convert.FromBase64String(dbpassword);
+            byte[] hashWithSaltBytes = Convert.FromBase64String(hashValue);
 
             int hashSizeInBits = 256;
-            int hashSizeInBytes = hashSizeInBits / 8;
+            int hashSizeInBytes;
+
+            hashSizeInBytes = hashSizeInBits / 8;
 
             if (hashWithSaltBytes.Length < hashSizeInBytes)
                 return false;
@@ -147,10 +146,12 @@ namespace GenerationC.Controllers
                 saltBytes[i] = hashWithSaltBytes[hashSizeInBytes + i];
 
             string expectedHashString =
-                        ComputeHash(password, saltBytes);
+                        ComputeHash(plainText, saltBytes);
 
-            return (dbpassword == expectedHashString);
+            return (hashValue == expectedHashString);
         }
+
+
     }
 
 }

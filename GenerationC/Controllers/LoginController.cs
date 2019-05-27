@@ -35,16 +35,23 @@ namespace GenerationC.Controllers
             
             try
             {
-                if (!UserAuth(user))
+                User User = db.Users.Where(u => u.Username == user.Username).FirstOrDefault();
+                if (User == null)
                 {
-                    ModelState.AddModelError("Authentication error", "Username or password are wrong");
+                    ModelState.AddModelError("Authentication error", "Username is wrong or don't exist");
                     return View(user);
                 }
+
+                if(!VerifyHash(user.Password, User.Password))
+                {
+                    ModelState.AddModelError("Authentication error", "Password invalid");
+                    return View(user);
+                }
+                
                 ModelState.AddModelError("Authentication error", "Logged in successfully");
-                User User = db.Users.Where(u => u.Username == user.Username && u.Password == user.Password).FirstOrDefault();
                 SessionCookies(User);
 
-                return RedirectToAction("Index", "Devices", user);
+                return RedirectToAction("Index", "Devices");
             }
             catch (Exception)
             {
