@@ -10,18 +10,22 @@
         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         </div>
-        <div class="form-inline float-lg-right">
-            @using (Html.BeginForm("Index", "Devices", FormMethod.Get))
-            {
 
-                <p>
-                    <strong>Find by name or type: </strong>
+        <div class="form-inline float-lg-left">
+            <span><button id="new" class="new"><i class="far fa-plus-square fa-2x"></i></button> New device?</span>
+        </div>
+
+         <div class="form-inline float-lg-right">
+             @using (Html.BeginForm("Index", "Devices", FormMethod.Get))
+              {
+               <p>
+                   <strong>Find by name or type: </strong>
                     @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control text-center" })
                     <input type="submit" value="Search" class="btn btn-outline-primary" />
-                </p>
+              </p>
 
-            }
-        </div>
+              }
+         </div>
             <table class="table table-responsive-md table-hover">
                 <thead>
                     <tr>
@@ -66,40 +70,51 @@
         </div>
 
 
-@section scripts {
-    <script>
+        @section scripts {
+            <script>
 
-    $(function () {
-        $(".details").click(function () {
-            var id = $(this).attr("data-id");
-            $("#modal").load("Devices/Details/" + id, function () {
-                $("#modal").modal();
-            })
-        })
-    });
+                
+                $(function () {
+                    $(".new").click(function () {
+                        var id = $(this).attr("data-id");
+                        $("#modal").load("Devices/New/", function () {
+                            $("#modal").modal();
+                        })
+                    })
+                });
 
-     $(function () {
-        $(".edit").click(function () {
-            var id = $(this).attr("data-id");
-            $("#modal").load("Devices/Edit/" + id, function () {
-                $("#modal").modal();
-            })
-        })
-     });
-     $(function () {
-        $(".delete").click(function () {
-            var id = $(this).attr("data-id");
-            $("#modal").load("Devices/Delete/" + id, function () {
-                $("#modal").modal();
-            })
-        })
-    });
 
-     
+                $(function () {
+                    $(".details").click(function () {
+                        var id = $(this).attr("data-id");
+                        $("#modal").load("Devices/Details/" + id, function () {
+                            $("#modal").modal();
+                        })
+                    })
+                });
 
-        $("modal").on("hidden.bs.modal", function (e) {
-            $(".modal-content").html("");
-            })
-    </script>
-    
-    }
+                $(function () {
+                    $(".edit").click(function () {
+                        var id = $(this).attr("data-id");
+                        $("#modal").load("Devices/Edit/" + id, function () {
+                            $("#modal").modal();
+                        })
+                    })
+                });
+                $(function () {
+                    $(".delete").click(function () {
+                        var id = $(this).attr("data-id");
+                        $("#modal").load("Devices/Delete/" + id, function () {
+                            $("#modal").modal();
+                        })
+                    })
+                });
+
+
+
+                $("modal").on("hidden.bs.modal", function (e) {
+                    $(".modal-content").html("");
+                })
+            </script>
+
+        }

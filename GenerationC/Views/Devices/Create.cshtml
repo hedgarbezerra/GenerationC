@@ -39,7 +39,7 @@
                 @Html.LabelFor(model => model.Gateway)
 
                 <div class="input-group mx-auto mb-3">
-                    @Html.EditorFor(model => model.Gateway, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "We promise not to hack you" } })
+                    @Html.EditorFor(model => model.Gateway, new { htmlAttributes = new { @class = "form-control text-center", placeholder = "192.168.0.1" } })
                     @Html.ValidationMessageFor(model => model.Gateway, "", new { @class = "text-danger" })
 
                 </div>

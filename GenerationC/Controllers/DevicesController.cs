@@ -158,7 +158,6 @@ namespace GenerationC.Controllers
             if (ModelState.IsValid)
             {
                 User user = db.Users.Find(Current_user());
-                device.Created_at = DateTime.Now;
                 device.User = user;
                 device.User_Id = user.Id;
                 db.Entry(device).State = EntityState.Modified;
@@ -166,7 +165,7 @@ namespace GenerationC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.User_Id = new SelectList(db.Users, "Id", "Name", device.User_Id);
-            return View(device);
+            return PartialView(device);
         }
 
         // GET: Devices/Delete/5
@@ -207,6 +206,50 @@ namespace GenerationC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult New()
+        {
+            if (!SessionAuth())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            ViewBag.User_Id = new SelectList(db.Users, "Id", "Name");
+            return PartialView();
+        }
+
+        // POST: Devices/Create
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult New(Device device)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int UserId = Current_user();
+                    User user = db.Users.Find(UserId);
+                    device.User = user;
+                    device.User_Id = user.Id;
+                    db.Devices.Add(device);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Devices");
+                }
+                catch
+                {
+                    return RedirectToAction("New", "Devices");
+                }
+            }
+
+            ViewBag.User_Id = new SelectList(db.Users, "Id", "Name", device.User_Id);
+            return PartialView(device);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

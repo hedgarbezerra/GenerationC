@@ -29,8 +29,9 @@
 
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center", placeholder = "We'll keep it secret" })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                @Html.ValidationMessage("Authentication error", new { @class = "text-danger" })
+               
             </div>
+             @Html.ValidationMessage("Authentication error", new { @class = "text-danger" })
         </div>
     </div>
 

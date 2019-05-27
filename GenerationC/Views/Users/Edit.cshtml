@@ -57,8 +57,8 @@
 
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control text-center" })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                @Html.ValidationMessage("IdentityError", new { @class = "text-danger" })
             </div>
+            @Html.ValidationMessage("IdentityError", new { @class = "text-danger" })
         </div>
     </div>
 

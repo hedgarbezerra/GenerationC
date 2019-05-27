@@ -21,12 +21,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal-footer justify-content-center">
+        <div class="modal-footer">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
-                <input type="submit" value="Delete" class="btn btn-outline-primary" />
+                <input type="submit" value="Delete" class="btn btn-outline-danger" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             }
         </div>
