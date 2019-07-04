@@ -7,7 +7,6 @@ body{
     flex-direction:column;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     flex: 1 0 auto;
     margin-top: 4em;

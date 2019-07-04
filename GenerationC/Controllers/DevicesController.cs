@@ -14,7 +14,20 @@ namespace GenerationC.Controllers
     {
         
         // GET: Devices
-        public ActionResult Index(string searchString)
+        public ActionResult Index()
+        {
+            if (!SessionAuth())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            int UserId = Current_user();
+
+            var devices = db.Devices.Where(d => d.User.Id == UserId);
+                return View(devices.ToList());
+            }
+
+        public ActionResult deviceFilter(string searchString)
         {
             if (!SessionAuth())
             {
@@ -24,16 +37,16 @@ namespace GenerationC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var devices = db.Devices.Where(d => d.User.Id == UserId && d.Name.Contains(searchString) ||  d.User.Id == UserId && d.Type.Contains(searchString));
-                return View(devices.ToList());
+                var devices = db.Devices.Where(d => d.User.Id == UserId && d.Name.Contains(searchString) || d.User.Id == UserId && d.Type.Contains(searchString));
+                return Json(devices.ToList(), JsonRequestBehavior.AllowGet);
             }
 
             else
             {
                 var devices = db.Devices.Where(d => d.User.Id == UserId);
-                return View(devices.ToList());
+                return Json(devices.ToList(), JsonRequestBehavior.AllowGet);
             }
-            
+
 
         }
 
@@ -63,12 +76,7 @@ namespace GenerationC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
             }
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(device);
-            }
-
+            
             return PartialView(device);
         }
 
@@ -140,11 +148,7 @@ namespace GenerationC.Controllers
             }
 
             ViewBag.User_Id = new SelectList(db.Users, "Id", "Name", device.User_Id);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(device);
-            }
-
+           
             return PartialView(device);
         }
 
@@ -188,11 +192,7 @@ namespace GenerationC.Controllers
                 return HttpNotFound();
             }
 
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(device);
-            }
-
+            
             return PartialView(device);
         }
 
@@ -240,12 +240,11 @@ namespace GenerationC.Controllers
                 }
                 catch
                 {
-                    return RedirectToAction("New", "Devices");
+                    return RedirectToAction("Index", "Devices");
                 }
             }
 
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "Name", device.User_Id);
-            return PartialView(device);
+            return RedirectToAction("Index", "Devices");
         }
 
 

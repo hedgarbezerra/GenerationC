@@ -20,6 +20,9 @@ namespace GenerationC
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizer-2.8.3.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                     "~/Scripts/main.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
